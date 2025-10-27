@@ -1,15 +1,15 @@
 <template>
   <div class="min-h-screen bg-gray-100 text-gray-800 relative overflow-hidden">
     <!-- Decorative Circles -->
-    <div class="absolute top-10 -left-10 w-40 h-40 bg-blue-200 rounded-full opacity-60 z-0"></div>
-    <div class="absolute bottom-20 -right-10 w-56 h-56 bg-blue-300 rounded-full opacity-50 z-0"></div>
+    <div class="absolute top-10 -left-10 w-32 sm:w-40 h-32 sm:h-40 bg-blue-200 rounded-full opacity-60 z-0"></div>
+    <div class="absolute bottom-20 -right-10 w-44 sm:w-56 h-44 sm:h-56 bg-blue-300 rounded-full opacity-50 z-0"></div>
 
     <!-- Header -->
     <header
       v-if="page === 'landing'"
-      class="bg-white shadow-sm py-4 px-6 md:px-10 flex justify-between items-center relative z-10"
+      class="bg-white shadow-sm py-4 px-4 sm:px-6 md:px-10 flex justify-between items-center relative z-10"
     >
-      <h1 class="text-xl sm:text-2xl font-bold text-blue-600">TicketPro</h1>
+      <h1 class="text-lg sm:text-2xl font-bold text-blue-600">TicketPro</h1>
       <nav class="hidden sm:flex space-x-4 sm:space-x-6">
         <button @click="page = 'login'" class="text-gray-700 hover:text-blue-600 font-medium">
           Login
@@ -22,9 +22,9 @@
         </button>
       </nav>
 
-      <!-- Mobile menu -->
+      <!-- Mobile menu toggle -->
       <button
-        class="sm:hidden text-blue-600 text-xl font-bold"
+        class="sm:hidden text-blue-600 text-2xl font-bold"
         @click="showMobileMenu = !showMobileMenu"
       >
         ☰
@@ -35,7 +35,7 @@
           v-if="showMobileMenu"
           class="absolute top-full left-0 w-full bg-white shadow-md flex flex-col space-y-2 p-4 sm:hidden"
         >
-          <button @click="page = 'login'; showMobileMenu = false" class="py-2 text-left text-gray-700 hover:text-blue-600">
+          <button @click="page = 'login'; showMobileMenu = false" class="py-2 text-gray-700 hover:text-blue-600">
             Login
           </button>
           <button
@@ -48,28 +48,28 @@
       </transition>
     </header>
 
-    <!-- Landing -->
+    <!-- Landing Page -->
     <section
       v-if="page === 'landing'"
-      class="flex flex-col items-center justify-center text-center px-6 py-24 sm:py-32 md:py-40 relative overflow-hidden"
+      class="flex flex-col items-center justify-center text-center px-4 sm:px-6 py-20 sm:py-28 md:py-36 relative overflow-hidden"
     >
       <div class="absolute inset-0 bg-gradient-to-b from-blue-50 to-white clip-path-wave z-0"></div>
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-6 relative z-10">
+      <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4 sm:mb-6 relative z-10">
         Manage Support Tickets Easily
       </h2>
-      <p class="text-gray-600 mb-10 relative z-10 max-w-xl text-sm sm:text-base">
-        Streamline your ticket workflow with TicketPro. Create, manage, and resolve tickets efficiently.
+      <p class="text-gray-600 mb-8 sm:mb-10 relative z-10 max-w-md sm:max-w-xl text-sm sm:text-base">
+        Streamline your ticket workflow with TicketPro. Create, manage, and resolve tickets efficiently from any device.
       </p>
-      <div class="relative z-10 flex flex-col sm:flex-row gap-4">
+      <div class="relative z-10 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
         <button
           @click="page = 'login'"
-          class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition w-full sm:w-auto"
+          class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
         >
           Login
         </button>
         <button
           @click="page = 'signup'"
-          class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition w-full sm:w-auto"
+          class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition"
         >
           Sign Up
         </button>
@@ -78,8 +78,8 @@
 
     <!-- Login -->
     <section v-if="page === 'login'" class="flex items-center justify-center px-4 py-16 sm:py-20">
-      <div class="bg-white shadow-lg rounded-xl p-6 sm:p-8 w-full max-w-sm sm:max-w-md">
-        <h2 class="text-xl sm:text-2xl font-bold text-center mb-6">Login</h2>
+      <div class="bg-white shadow-lg rounded-xl p-6 sm:p-8 w-full max-w-xs sm:max-w-md">
+        <h2 class="text-lg sm:text-2xl font-bold text-center mb-6">Login</h2>
         <form class="space-y-4" @submit.prevent="page = 'dashboard'">
           <input
             type="email"
@@ -107,8 +107,8 @@
 
     <!-- Signup -->
     <section v-if="page === 'signup'" class="flex items-center justify-center px-4 py-16 sm:py-20">
-      <div class="bg-white shadow-lg rounded-xl p-6 sm:p-8 w-full max-w-sm sm:max-w-md">
-        <h2 class="text-xl sm:text-2xl font-bold text-center mb-6">Create Account</h2>
+      <div class="bg-white shadow-lg rounded-xl p-6 sm:p-8 w-full max-w-xs sm:max-w-md">
+        <h2 class="text-lg sm:text-2xl font-bold text-center mb-6">Create Account</h2>
         <form class="space-y-4" @submit.prevent="page = 'dashboard'">
           <input
             type="text"
@@ -139,7 +139,7 @@
       </div>
     </section>
 
-    <!-- Dashboard & Tickets -->
+    <!-- Dashboard / Tickets -->
     <div
       v-if="page === 'dashboard' || page === 'tickets'"
       class="flex flex-col md:flex-row min-h-screen relative z-10"
@@ -148,8 +148,8 @@
       <aside
         class="w-full md:w-64 bg-white shadow-md flex flex-col md:h-auto order-last md:order-first"
       >
-        <div class="p-4 md:p-6 border-b flex justify-between items-center md:block">
-          <h1 class="text-xl md:text-2xl font-bold text-blue-600">TicketPro</h1>
+        <div class="p-4 border-b flex justify-between items-center md:block">
+          <h1 class="text-lg md:text-2xl font-bold text-blue-600">TicketPro</h1>
           <button class="md:hidden text-gray-600 text-xl" @click="sidebarOpen = !sidebarOpen">☰</button>
         </div>
 
@@ -173,88 +173,84 @@
         </div>
       </aside>
 
-      <!-- Main -->
-      <main class="flex-1 flex flex-col">
-        <header class="bg-white shadow-sm py-4 px-6 sm:px-8 flex justify-between items-center">
-          <h2 class="text-lg sm:text-xl font-semibold capitalize">{{ page }}</h2>
-          <nav class="hidden sm:flex space-x-6">
-            <button @click="page = 'tickets'" class="text-gray-700 hover:text-blue-600 font-medium">
-              Tickets
-            </button>
-            <button class="text-gray-700 hover:text-blue-600 font-medium">Settings</button>
-          </nav>
+      <!-- Main Content -->
+      <main class="flex-1 flex flex-col w-full">
+        <header class="bg-white shadow-sm py-3 sm:py-4 px-4 sm:px-6 flex justify-between items-center">
+          <h2 class="text-base sm:text-lg md:text-xl font-semibold capitalize">{{ page }}</h2>
         </header>
 
         <!-- Dashboard -->
         <section
           v-if="page === 'dashboard'"
-          class="p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          class="p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
         >
-          <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+          <div class="bg-white rounded-xl shadow p-4 sm:p-6 border-l-4 border-blue-500">
             <h3 class="text-gray-500 text-sm mb-2">Total Tickets</h3>
-            <p class="text-3xl font-bold">128</p>
+            <p class="text-2xl sm:text-3xl font-bold">128</p>
           </div>
-          <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500">
+          <div class="bg-white rounded-xl shadow p-4 sm:p-6 border-l-4 border-green-500">
             <h3 class="text-gray-500 text-sm mb-2">Open Tickets</h3>
-            <p class="text-3xl font-bold">42</p>
+            <p class="text-2xl sm:text-3xl font-bold">42</p>
           </div>
-          <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-yellow-500">
+          <div class="bg-white rounded-xl shadow p-4 sm:p-6 border-l-4 border-yellow-500">
             <h3 class="text-gray-500 text-sm mb-2">In Progress</h3>
-            <p class="text-3xl font-bold">18</p>
+            <p class="text-2xl sm:text-3xl font-bold">18</p>
           </div>
-          <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-gray-400">
-            <h3 class="text-gray-500 text-sm mb-2">Closed Tickets</h3>
-            <p class="text-3xl font-bold">68</p>
+          <div class="bg-white rounded-xl shadow p-4 sm:p-6 border-l-4 border-gray-400">
+            <h3 class="text-gray-500 text-sm mb-2">Closed</h3>
+            <p class="text-2xl sm:text-3xl font-bold">68</p>
           </div>
         </section>
 
         <!-- Tickets -->
-        <section v-if="page === 'tickets'" class="p-6 sm:p-8 overflow-x-auto">
-          <div class="bg-white rounded-xl shadow-md overflow-hidden min-w-[700px]">
+        <section v-if="page === 'tickets'" class="p-4 sm:p-6 overflow-x-auto">
+          <div class="bg-white rounded-xl shadow overflow-hidden">
             <div class="flex flex-col sm:flex-row justify-between items-center border-b p-4 gap-4">
-              <h3 class="text-lg font-semibold">Manage Tickets</h3>
+              <h3 class="text-base sm:text-lg font-semibold">Manage Tickets</h3>
               <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
                 + New Ticket
               </button>
             </div>
-            <table class="min-w-full text-left text-sm">
-              <thead class="bg-gray-50 border-b text-gray-600">
-                <tr>
-                  <th class="py-3 px-6">ID</th>
-                  <th class="py-3 px-6">Subject</th>
-                  <th class="py-3 px-6">Priority</th>
-                  <th class="py-3 px-6">Assignee</th>
-                  <th class="py-3 px-6">Status</th>
-                  <th class="py-3 px-6">Last Updated</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  v-for="(t, i) in tickets"
-                  :key="i"
-                  class="border-b hover:bg-gray-50"
-                >
-                  <td class="py-3 px-6 font-medium">{{ t.id }}</td>
-                  <td class="py-3 px-6">{{ t.subject }}</td>
-                  <td class="py-3 px-6">
-                    <span
-                      :class="`px-3 py-1 text-xs font-medium rounded-full ${t.priorityClass}`"
-                    >
-                      {{ t.priority }}
-                    </span>
-                  </td>
-                  <td class="py-3 px-6">{{ t.assignee }}</td>
-                  <td class="py-3 px-6">
-                    <span
-                      :class="`px-3 py-1 text-xs font-medium rounded-full ${t.statusClass}`"
-                    >
-                      {{ t.status }}
-                    </span>
-                  </td>
-                  <td class="py-3 px-6">{{ t.date }}</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="overflow-x-auto">
+              <table class="min-w-full text-left text-sm">
+                <thead class="bg-gray-50 border-b text-gray-600">
+                  <tr>
+                    <th class="py-3 px-4 sm:px-6">ID</th>
+                    <th class="py-3 px-4 sm:px-6">Subject</th>
+                    <th class="py-3 px-4 sm:px-6">Priority</th>
+                    <th class="py-3 px-4 sm:px-6">Assignee</th>
+                    <th class="py-3 px-4 sm:px-6">Status</th>
+                    <th class="py-3 px-4 sm:px-6">Last Updated</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="(t, i) in tickets"
+                    :key="i"
+                    class="border-b hover:bg-gray-50"
+                  >
+                    <td class="py-3 px-4 sm:px-6 font-medium">{{ t.id }}</td>
+                    <td class="py-3 px-4 sm:px-6">{{ t.subject }}</td>
+                    <td class="py-3 px-4 sm:px-6">
+                      <span
+                        :class="`px-3 py-1 text-xs font-medium rounded-full ${t.priorityClass}`"
+                      >
+                        {{ t.priority }}
+                      </span>
+                    </td>
+                    <td class="py-3 px-4 sm:px-6">{{ t.assignee }}</td>
+                    <td class="py-3 px-4 sm:px-6">
+                      <span
+                        :class="`px-3 py-1 text-xs font-medium rounded-full ${t.statusClass}`"
+                      >
+                        {{ t.status }}
+                      </span>
+                    </td>
+                    <td class="py-3 px-4 sm:px-6">{{ t.date }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
       </main>
@@ -263,7 +259,7 @@
     <!-- Footer -->
     <footer
       v-if="page === 'landing'"
-      class="bg-white py-6 text-center text-gray-500 mt-16 relative z-10 border-t"
+      class="bg-white py-6 text-center text-gray-500 mt-12 sm:mt-16 relative z-10 border-t"
     >
       <p>© {{ new Date().getFullYear() }} TicketPro. All rights reserved.</p>
     </footer>
