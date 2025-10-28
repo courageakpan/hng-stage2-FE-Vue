@@ -322,13 +322,13 @@
                   @click="editTicket(ticket)"
                   class="text-blue-600 hover:text-blue-800 text-sm"
                 >
-                  
+                  ✏️
                 </button>
                 <button
                   @click="confirmDelete(ticket)"
                   class="text-red-600 hover:text-red-800 text-sm"
                 >
-                  
+                  🗑️
                 </button>
               </div>
               
